@@ -1,4 +1,4 @@
-package br.com.dextra.api;
+package com.example.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
