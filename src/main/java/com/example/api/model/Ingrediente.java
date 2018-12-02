@@ -6,6 +6,14 @@ public class Ingrediente {
 	private int qtd;
 	private Double preco;
 	
+	public Ingrediente() {}
+	
+	public Ingrediente(String nome, int qtd, double preco) {
+		this.nome = nome;
+		this.qtd = qtd;
+		this.preco = preco;
+	}
+	
 	public Ingrediente(IngredienteEnum ingrediente, int qtd){
        this.nome = ingrediente.getNome();
        this.preco = ingrediente.getPreco();
