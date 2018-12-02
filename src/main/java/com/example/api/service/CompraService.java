@@ -2,11 +2,14 @@ package com.example.api.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import com.example.api.model.Ingrediente;
 import com.example.api.model.IngredienteEnum;
 import com.example.api.model.LancheModel;
+import com.example.api.model.LanchesModel;
 
 @Service
 public class CompraService {
@@ -68,7 +71,12 @@ public class CompraService {
 	 */
 	public LancheModel comprarLanchePersonalizado(List<Ingrediente> ingredientes) {
 		
-		LancheModel personalizado = service.getLanchePersonalizado(ingredientes);
+		LancheModel personalizado = new LancheModel();
+		
+		if(ingredientes != null ) {
+			personalizado.setIngredientes(ingredientes);
+		}
+		
 		personalizado = calculaValorLanche(personalizado);
 		
 		return personalizado;
@@ -216,5 +224,27 @@ public class CompraService {
 		
 		return lanche;
 	}
-	
+
+	/**
+	 * 
+	 * @param lanches
+	 * @return
+	 */
+	public LanchesModel comprarLanches(@Valid LanchesModel lanches) {
+
+		LanchesModel retorno = new LanchesModel();
+		double valorTotalCompra = 0d;
+		
+		if(lanches != null) {
+			for(LancheModel lanche : lanches.getLanches()) {
+				LancheModel aux = this.comprarLanchePersonalizado(lanche.getIngredientes());
+				valorTotalCompra += aux.getValorTotal();
+				retorno.getLanches().add(aux);
+			}
+			
+			retorno.setValorTotalCompra(valorTotalCompra);
+		}
+		
+		return retorno;
+	}
 }

@@ -104,22 +104,4 @@ public class LancheService {
 		return xEggBacon;
 	}
 	
-	/**
-	 * Monta lanche personalizado
-	 * @param ingredientes
-	 * @return
-	 */
-	public LancheModel getLanchePersonalizado(List<Ingrediente> ingredientes) {
-		
-		LancheModel personalizado = new LancheModel();
-		
-		if(ingredientes != null ) {
-			personalizado.setIngredientes(ingredientes);
-		}
-		
-		return personalizado;	
-	}
-	
-	
-	
 }

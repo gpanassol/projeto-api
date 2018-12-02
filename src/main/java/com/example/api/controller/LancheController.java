@@ -1,53 +1,42 @@
 package com.example.api.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.api.model.LancheModel;
-import com.example.api.service.CompraService;
+import com.example.api.service.LancheService;
 
 @RestController
-@RequestMapping("/lanche")
+@RequestMapping("/cardapio")
 public class LancheController {
 
 	@Autowired
-	CompraService service;
+	LancheService service;
 	
     @GetMapping("/xbacon")
     @ResponseBody
     public ResponseEntity<Object> getXBacon(){
-        return ResponseEntity.ok().body(service.comprarLancheXBacon());
+        return ResponseEntity.ok().body(service.getXBacon());
     }
 
     @GetMapping("/xburguer")
     @ResponseBody
     public ResponseEntity<Object> getXBuguer(){
-        return ResponseEntity.ok().body(service.comprarLancheXBuguer());
+        return ResponseEntity.ok().body(service.getxBuguer());
     }
     
     @GetMapping("/xegg")
     @ResponseBody
     public ResponseEntity<Object> getXEgg(){
-        return ResponseEntity.ok().body(service.comprarLanchexEgg());
+        return ResponseEntity.ok().body(service.getxEgg());
     }
     
     @GetMapping("/xeggbacon")
     @ResponseBody
     public ResponseEntity<Object> getXEggBacon(){
-        return ResponseEntity.ok().body(service.comprarLanchexEggBacon());
+        return ResponseEntity.ok().body(service.getxEggBacon());
     }
-    
-    @PostMapping("/personalizado")
-    public ResponseEntity<Object> getPersonalizado(@Valid @RequestBody LancheModel lanche){
-    	return ResponseEntity.ok().body(service.comprarLanchePersonalizado(lanche.getIngredientes()));
-    }
-    
 }
