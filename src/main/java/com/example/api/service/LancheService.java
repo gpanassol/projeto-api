@@ -3,6 +3,7 @@ package com.example.api.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.api.model.Ingrediente;
@@ -12,6 +13,9 @@ import com.example.api.model.LancheModel;
 @Service
 public class LancheService {
 	
+	@Autowired
+	private CompraService compraService;
+	
 	/**
 	 * Lanche XBacon Padrão
 	 * @return
@@ -19,6 +23,7 @@ public class LancheService {
 	public LancheModel getXBacon() {
 		
 		LancheModel xbacon = new LancheModel();
+		xbacon.setNome("X-Bacon");
 		
 		List<Ingrediente> ingredientes = new ArrayList<>();
 		
@@ -31,6 +36,7 @@ public class LancheService {
 		ingredientes.add(queijo);
 		
 		xbacon.setIngredientes(ingredientes);
+		compraService.calculaValorLanche(xbacon);
 		
 		return xbacon;
 	}
@@ -42,6 +48,7 @@ public class LancheService {
 	public LancheModel getxBuguer() {
 		
 		LancheModel xBuguer = new LancheModel();
+		xBuguer.setNome("X-Burguer");
 		
 		List<Ingrediente> ingredientes = new ArrayList<>();
 		
@@ -52,6 +59,7 @@ public class LancheService {
 		ingredientes.add(queijo);
 		
 		xBuguer.setIngredientes(ingredientes);
+		compraService.calculaValorLanche(xBuguer);
 		
 		return xBuguer;
 	}
@@ -63,6 +71,7 @@ public class LancheService {
 	public LancheModel getxEgg() {
 		
 		LancheModel xEgg = new LancheModel();
+		xEgg.setNome("X-Egg");
 		
 		List<Ingrediente> ingredientes = new ArrayList<>();
 		
@@ -75,6 +84,7 @@ public class LancheService {
 		ingredientes.add(queijo);
 		
 		xEgg.setIngredientes(ingredientes);
+		compraService.calculaValorLanche(xEgg);
 		
 		return xEgg;
 	}
@@ -86,6 +96,7 @@ public class LancheService {
 	public LancheModel getxEggBacon() {
 		
 		LancheModel xEggBacon = new LancheModel();
+		xEggBacon.setNome("X-EggBacon");
 		
 		List<Ingrediente> ingredientes = new ArrayList<>();
 		
@@ -100,8 +111,24 @@ public class LancheService {
 		ingredientes.add(queijo);
 		
 		xEggBacon.setIngredientes(ingredientes);
+		compraService.calculaValorLanche(xEggBacon);
 		
 		return xEggBacon;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<LancheModel> getTodosLanches() {
+		
+		List<LancheModel> retorno = new ArrayList<>();
+		retorno.add(getXBacon());
+		retorno.add(getxBuguer());
+		retorno.add(getxEgg());
+		retorno.add(getxEggBacon());
+		
+		return retorno;
 	}
 	
 }

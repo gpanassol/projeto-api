@@ -39,4 +39,10 @@ public class LancheController {
     public ResponseEntity<Object> getXEggBacon(){
         return ResponseEntity.ok().body(service.getxEggBacon());
     }
+    
+    @GetMapping("/todos")
+    @ResponseBody
+    public ResponseEntity<Object> getTodosLanches(){
+        return ResponseEntity.ok().body(service.getTodosLanches());
+    }
 }

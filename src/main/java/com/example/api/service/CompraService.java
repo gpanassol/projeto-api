@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.api.model.Ingrediente;
@@ -14,7 +15,8 @@ import com.example.api.model.LanchesModel;
 @Service
 public class CompraService {
 
-	private LancheService service = new LancheService();
+	@Autowired
+	private LancheService service;
 	
 	/**
 	 * 
