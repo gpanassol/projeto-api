@@ -4,7 +4,7 @@ In the project SpringBoot, you can run:
 
 ## `mvn spring-boot:run`
 
-Runs the project api in the development mode.<br>
+Runs the project api in the development mode. API to http://localhost:8080/ <br/>
 
 ## `mvn test`
 
