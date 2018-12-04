@@ -4,7 +4,7 @@ public enum IngredienteEnum {
 
 	ALFACE("alface", 0.40), 
 	BACON("bacon", 2.00), 
-	HAMBURGUERCARNE("hamburguerCarne", 3.00), 
+	HAMBURGUERCARNE("hamburguer", 3.00), 
 	OVO("ovo", 0.80), 
 	QUEIJO("queijo", 1.50);
 	

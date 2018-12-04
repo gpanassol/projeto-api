@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.api.model.LancheModel;
 import com.example.api.model.LanchesModel;
-import com.example.api.service.CompraService;
+import com.example.api.service.PedidoService;
 
 @RestController
-@RequestMapping("/compra")
-public class CompraController {
+@RequestMapping("/pedido")
+public class PedidoController {
 
 	@Autowired
-	CompraService service;
+	PedidoService service;
 	
     @GetMapping("/xbacon")
     @ResponseBody
@@ -51,8 +51,14 @@ public class CompraController {
     	return ResponseEntity.ok().body(service.comprarLanchePersonalizado(lanche.getIngredientes()));
     }
 	
-    @PostMapping("/lanches")
-    public ResponseEntity<Object> getLanches(@Valid @RequestBody LanchesModel lanches){
-    	return ResponseEntity.ok().body(service.comprarLanches(lanches));
+    @PostMapping("/lanche")
+    public ResponseEntity<Object> postLanche(@Valid @RequestBody LancheModel lanche){
+    	return ResponseEntity.ok().body(service.comprarLanche(lanche));
     }
+    
+    @GetMapping("/lanches")
+    public ResponseEntity<Object> getLanches(){
+    	return ResponseEntity.ok().body(service.buscaListaCompraLanches());
+    }
+    
 }

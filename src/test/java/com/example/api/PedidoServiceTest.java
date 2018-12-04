@@ -14,14 +14,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.example.api.model.Ingrediente;
 import com.example.api.model.IngredienteEnum;
 import com.example.api.model.LancheModel;
-import com.example.api.service.CompraService;
+import com.example.api.service.PedidoService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CompraServiceTest {
+public class PedidoServiceTest {
 
 	@Autowired
-	private CompraService service;
+	private PedidoService service;
 	
 	@Test
 	public void testRegraPrecoHamburguerQueijo() {

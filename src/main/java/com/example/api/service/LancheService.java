@@ -14,7 +14,7 @@ import com.example.api.model.LancheModel;
 public class LancheService {
 	
 	@Autowired
-	private CompraService compraService;
+	private PedidoService compraService;
 	
 	/**
 	 * Lanche XBacon Padrão

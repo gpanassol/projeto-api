@@ -13,10 +13,12 @@ import com.example.api.model.LancheModel;
 import com.example.api.model.LanchesModel;
 
 @Service
-public class CompraService {
+public class PedidoService {
 
 	@Autowired
 	private LancheService service;
+	
+	private LanchesModel compraCliente = new LanchesModel(); 
 	
 	/**
 	 * 
@@ -105,7 +107,7 @@ public class CompraService {
 						ingrediente.setPreco(IngredienteEnum.BACON.getPreco());
 						valorTotal += IngredienteEnum.BACON.getPreco() * ingrediente.getQtd();
 						break;
-					case "hamburguerCarne":
+					case "hamburguer":
 						ingrediente.setPreco(IngredienteEnum.HAMBURGUERCARNE.getPreco());
 						valorTotal += IngredienteEnum.HAMBURGUERCARNE.getPreco() * ingrediente.getQtd();
 						break;
@@ -240,6 +242,7 @@ public class CompraService {
 		if(lanches != null) {
 			for(LancheModel lanche : lanches.getLanches()) {
 				LancheModel aux = this.comprarLanchePersonalizado(lanche.getIngredientes());
+				aux.setNome(lanche.getNome());
 				valorTotalCompra += aux.getValorTotal();
 				retorno.getLanches().add(aux);
 			}
@@ -248,5 +251,25 @@ public class CompraService {
 		}
 		
 		return retorno;
+	}
+	
+	/**
+	 * Inclui lanche na lista de compra
+	 * @param compraCliente
+	 * @return
+	 */
+	public LancheModel comprarLanche(@Valid LancheModel lanche) {
+		LancheModel retorno = this.comprarLanchePersonalizado(lanche.getIngredientes());
+		retorno.setNome(lanche.getNome());
+		this.compraCliente.getLanches().add(retorno);
+		return retorno;
+	}
+	
+	/**
+	 * Retorna a lista de lanches com valor total
+	 * @return
+	 */
+	public LanchesModel buscaListaCompraLanches() {
+		return this.comprarLanches(this.compraCliente);
 	}
 }
